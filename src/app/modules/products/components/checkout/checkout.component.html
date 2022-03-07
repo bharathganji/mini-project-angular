@@ -1,0 +1,128 @@
+<div class='container1'>
+  <div class='window'>
+    <div class='order-info'>
+      <div class='order-info-content'>
+        <h2>Order Summary</h2>
+
+        <div *ngFor="let item of cartarray; index as i">
+          <div class='line'></div>
+          <table class='order-table'>
+            <tbody>
+              <tr>
+                <td><img [src]='item.img' class='full-width'>
+                </td>
+                <td>
+                  <br> <span class='thin'>{{item.title}}</span>
+                  <br>
+                  <span class='thin small'> {{item.description}}<br><br></span>
+                </td>
+
+              </tr>
+              <tr>
+                <td>
+                  <div class='price'>{{item.price | currency: "INR":"symbol"}}</div>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+        <!-- 
+        <div class='line'></div>
+        <table class='order-table'>
+          <tbody>
+            <tr>
+              <td><img
+                  src='https://dl.dropboxusercontent.com/s/qbj9tsbvthqq72c/Vintage-20L-Backpack-by-Fj%C3%A4llr%C3%A4ven.jpg'
+                  class='full-width'>
+              </td>
+              <td>
+                <br> <span class='thin'>Fjällräven</span>
+                <br>Vintage Backpack<br> <span class='thin small'> Color: Olive, Size: 20L</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class='price'>$235.95</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class='line'></div>
+        <table class='order-table'>
+          <tbody>
+            <tr>
+              <td><img src='https://dl.dropboxusercontent.com/s/nbr4koso8dpoggs/6136C1p5FjL._SL1500_.jpg'
+                  class='full-width'>
+              </td>
+              <td>
+                <br> <span class='thin'>Monobento</span>
+                <br>Double Lunchbox<br> <span class='thin small'> Color: Pink, Size: Medium</span>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <div class='price'>$25.95</div>
+              </td>
+            </tr>
+          </tbody>
+        </table> -->
+
+
+
+        <div class='line'></div>
+        <div class='total'>
+          <span style='float:left;'>
+            <!-- <div class='thin dense'>VAT 19%</div> -->
+            <div class='thin dense'>Delivery</div>
+            TOTAL
+          </span>
+          <span style='float:right; text-align:right;'>
+            <!-- <div class='thin dense'>$68.75</div> -->
+            <div class='thin dense'><i>free</i></div>
+            {{totalcartvalue| currency: "INR":"symbol"}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class='credit-info'>
+      <div class='credit-info-content'>
+        <table class='half-input-table'>
+          <tr>
+
+
+          </tr>
+        </table>
+        <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80'
+          class='credit-card-image' id='credit-card-image'>
+        Card Number
+        <input class='input-field'>
+        Card Holder
+        <input class='input-field'>
+        <table class='half-input-table'>
+          <tr>
+            <td> Expires
+              <input class='input-field'>
+            </td>
+            <td>CVC
+              <input class='input-field'>
+            </td>
+          </tr>
+        </table>
+
+
+        <button class="pay-btn" [disabled]="isLoading" (click)="click()">
+          <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"></i>
+          {{button}}</button>
+
+        <!-- <button class='pay-btn  animate__bounceInUp' routerLink="/products/success"
+          (click)="deletecart()">Purchase</button> -->
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- https://codepen.io/Tbgse/pen/vGeRVd -->

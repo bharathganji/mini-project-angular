@@ -1,0 +1,43 @@
+<!-- 
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Product details</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let order of orderArray">
+      <tr>
+        <td>
+           <img [src]="order.img" alt="" style="height: 75px;"> </td>
+        <td>{{ order.title }}</td>
+        <td>{{ order.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+ -->
+
+<div [ngClass]="['container']">
+  <hr />
+  <table id="users">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Product details</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orderArray">
+        <td>
+          <img [src]="order.img" alt="" style="height: 75px" />
+        </td>
+        <td>{{ order.title }}</td>
+        <td>{{ order.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

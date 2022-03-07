@@ -1,0 +1,91 @@
+<div class="row" style="width: 100%">
+    <div class="col-md-2" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-light" id="sidebar-wrapper">
+            <div class="list-group list-group-flush">
+                <!-- <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a> -->
+            <form >
+
+                <a class="list-group-item list-group-item-action list-group-item-light p-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..." #search>
+                        <span class="input-group-btn" >
+                            <button class="btn btn-primary" type="submit" (click)="fiterByText(search.value)">
+                                <fa-icon [icon]="faSearch" class="fa-1x"> </fa-icon>
+                            </button>
+                        </span>
+                    </div>
+                </a>
+          
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" >
+                    <span style="color: black; font-weight: bolder;">     Sort By</span> 
+                    <select name="" class="form-control" #select (change)="sort(select.value)">
+                        <option value="selected">---select---</option>
+                        <option value="hightolow">high to low ⬇</option>
+                        <option value="lowtohigh">low to high ⬆</option>
+                    </select>
+                    
+                </a>
+
+                <a class="list-group-item list-group-item-action list-group-item-light p-3">
+                    <span style="color: black; font-weight: bolder;">Rating</span> 
+                    <div class="input-group-text">
+                        <input type="checkbox" (click)="rating( 4)" name="s" [(ngModel)]="star4"  />&nbsp;4★ & above
+                    </div>
+
+                    <div class="input-group-text">
+                        <input type="checkbox" (click)="rating( 3) " name="ss" [(ngModel)]="star3"/>&nbsp; 3★ & above
+                    </div>
+
+                    <div class="input-group-text">
+                        <input type="checkbox"  (click)="rating( 2)" name="sss" [(ngModel)]="star2" />&nbsp; 2★ & above
+                    </div>
+                </a>
+                <!-- <small>  <a  class="list-group-item " style="color: blue;" (click)="resetAll()" >reset all</a></small> -->
+
+                <a class="list-group-item list-group-item-action list-group-item-light p-3">
+
+                    <p>min value: 500</p>
+
+                    <p>Max value: {{value}}</p>
+
+                    <mat-slider
+                    thumbLabel
+                     min="500" max="5000" step="100" name="range"
+                     style="width: max-content;"
+                     value="500" [(ngModel)]="value" (change)="rangeFilter()"></mat-slider>
+                </a>
+
+                <input type="reset" value="Reset" class="btn btn-default" (click)="resetAll()">
+            </form>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+    </div>
+
+    <div class="content col-md-10">
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+            <div [fxFlex]="100 / 4 + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let products of dup_women_array;index as i">
+                <div class="card arrow" style="width: 18rem">
+                    <img class="card-img-top center" [src]="products.img" alt="Card image cap"
+                        style="height: 300px; width: 200px" />
+                    <div class="card-body">
+                        <h3 class="card-title"  style="font-weight: bold; text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">{{ products.title }}</h3>
+                        <h2 class="card-title">
+                          <i style="color: #B12704;"  > {{ products.price | currency: "INR":"symbol" }}</i>  
+                        </h2>
+                        <span *ngFor="let i of   toArray(products.rating)" >
+                            <span class="fa fa-star checked" style="padding-right: 2px;"></span>
+                        </span>
+                        <p class="card-text">{{ products.description }}</p>
+                        <!-- <input type="button" class="btn btn-primary animate__heartBeat" (click)="addTocart(i)"   value="Add to Cart"> -->
+                        <button class="aa" (click)="addTocart(i)"> Add to Cart
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

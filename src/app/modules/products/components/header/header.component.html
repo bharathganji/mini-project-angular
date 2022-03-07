@@ -1,0 +1,167 @@
+<div style="font-weight: bolder; font-size: 20px">
+  <nav
+    class="navbar navbar-expand-sm navbar-light"
+    style="
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      padding: 15px 0 15px 0;
+    "
+  >
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+      class="navbar-brand animate__heartBeat"
+      routerLink="/products/home"
+      >ShopIT😋</a
+    >
+    <button
+      class="navbar-toggler d-lg-none"
+      type="button"
+      data-toggle="collapse"
+      data-target="#collapsibleNavId"
+      aria-controls="collapsibleNavId"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+        <li class="nav-item ">
+          <a
+            class="nav-link animate__fadeInUpBig "
+            routerLink="/products/men"
+            routerLinkActive="active"
+            >Mens <span class="sr-only">(current)</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link animate__fadeInLeft"
+            routerLink="/products/women"
+            routerLinkActive="active"
+            >Women</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link animate__fadeInLeft"
+            routerLink="/products/kids"
+            routerLinkActive="active"
+            >Kids</a
+          >
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item" data-toggle="modal" data-target="#cartModal">
+          <a class="nav-link " (click)="loadcartarray()">
+            <fa-icon [icon]="faShoppingCart" class="fa-1x"> </fa-icon>
+            <!-- <i class="fa-solid fa-person-dress"></i> -->
+            <span style="background-color: rgb(241, 98, 14)"  class="animate__heartBeat" name="pc">
+              {{ productcount }}&nbsp;
+            </span> 
+          </a>
+        </li>&nbsp;
+        <li class="nav-item signoutLink">
+          <a class="nav-link" routerLink="/products/orderdetails" >
+            Orders
+            <fa-icon [icon]="faShoppingBag" class="fa-1x "></fa-icon>
+          </a>
+        </li>
+        &nbsp;
+        <li class="nav-item signoutLink">
+          <a class="nav-link" routerLink="" (click)="logout()">
+            signout
+            <fa-icon [icon]="faSignOutAlt" class="fa-1x signout"></fa-icon>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<!-- //cartmodel -->
+<div
+  class="modal fade"
+  id="cartModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-image">
+          <thead>
+            <tr>
+              <th scope="col">image </th>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <!-- <th scope="col">Qty</th> -->
+              <!-- <th scope="col">Total</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cartitem of cartarray;index as i">
+              <td class="w-25">
+                <img
+                  [src]="cartitem.img"
+                  class="img-fluid img-thumbnail "
+                  style="max-height: 200px;"
+                  alt="Sheep"
+                />
+              </td>
+              <td>{{ cartitem.title }}</td>
+              <td>{{ cartitem.price | currency: "INR":"symbol"}}</td>
+              <td > <a class="button touch delete" (click)="deleteincart(i)"></a> </td>
+              <!-- <td class="qty">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="input1"
+                  name="quantity"
+                  [(ngModel)]="quantity"
+                />
+              </td> -->
+              <!-- <td>{{ cartitem.price | currency: "INR":"symbol" }}</td> -->
+            </tr>
+<!-- 
+            <tr>
+              <td class="w-25">
+                <img
+                  src="../../../../../assets/kids.jpg"
+                  class="img-fluid img-thumbnail"
+                  alt="Sheep"
+                />
+              </td>
+              <td>Vans Sk8-Hi MTE Shoes</td>
+              <td>89$</td>
+              <td class="qty">
+                <input type="text" class="form-control" id="input1" value="2" />
+              </td>
+              <td>178$</td>
+            </tr> -->
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-end" >
+          <h5>Total: <span class="price text-success" style="font-size: xx-large;">{{totalcartvalue| currency: "INR":"symbol"}}</span></h5>
+        </div>
+      </div>
+      <div class="modal-footer border-top-0 d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-success" routerLink="/products/checkout" data-dismiss="modal">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
